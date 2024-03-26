@@ -7,7 +7,7 @@ with open('../config.json') as f:
     
 agbplay_config_path = config['agbplay_config_path']
 
-with open(agbplay_config_path, "r+") as f:
+with open(agbplay_config_path, "r+", encoding='latin-1') as f:
     txt = f.read()
     txt = txt.replace('"max-loops-export" : 1,', '"max-loops-export" : 0,')
     f.seek(0)
