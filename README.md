@@ -1,5 +1,5 @@
 # agbplay_loop
-Get looping data from .wav exported by AGBPLAY.exe
+Get loop points from .wav files exported with [agbplay.exe](https://github.com/ipatix/agbplay)
 
 ## Requirements
 To download the songs, you'll need to have Python 3 installed with the following libraries:
