@@ -21,7 +21,7 @@ To download the songs, you'll need to have Python 3 installed with the following
 Folder details:
 * `agbplay`: folder where optional python scripts are located. Check the `Optional` section for more details
 * `input`: folder where .wav exported by agbplay.exe should be stored
-* `output`: folder where the output .wav will be stored, as well as the json file that contains the loop points
+* `output`: folder where the loop points and output .wav will be stored. This folder will be automatically created
 
 ## Usage
 1) For each song that you want to loop, use `agbplay.exe` to export 2 wav files:
