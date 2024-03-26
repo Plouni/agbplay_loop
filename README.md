@@ -24,17 +24,17 @@ Folder details:
 * `output`: folder where the output .wav will be stored, as well as the json file that contains the loop points
 
 ## Usage
-1) For each song that you want to loop, use `agbplay.exe` to export it 2 times:
- - one time with no looping (set `"max-loops-export"` to 0 in agbplay's config), the filename of this .wav should end with `"_0.wav"`  
- - the second time with 1 looping (set `"max-loops-export"` to 1 in agbplay's config)  
+1) For each song that you want to loop, use `agbplay.exe` to export 2 wav files:
+ - a `.wav` with no looping (set `"max-loops-export"` to 0 in agbplay's config). The filename of this .wav should end with `"_0.wav"`  
+ - a `.wav` with 1 loop (set `"max-loops-export"` to 1 in agbplay's config)  
 
 For example, if you're exporting a song called `'mymusic'` from agbplay:
  - `'mymusic_0.wav'` is the filename for the wav exported with no looping  
- - `'mymusic.wav'` is the filename for the wav exported with 1 looping  
+ - `'mymusic.wav'` is the filename for the wav exported with 1 loop 
 
 2) Place all the exported .wav inside the `'input'` folder of this project.  
 
-3) Run the python script `'agbplay_loop.py'`. This will compute the loop points for each pair of wav and export the trimmed `.wav` to the `'output'` folder. A json that contains the loop points for each .wav will also be produced inside the `'output'` folder. 
+3) Run the python script `'agbplay_loop.py'`. This will compute the loop points for each pair and store them in a json file, inside the `'output'` folder. The output `.wav`, trimmed to the end loop point, will be located inside the same folder.
 
 ## (Optional) Setting up agbplay config
 To make the agbplay.exe export faster, it is recommended to use the python scripts located in the `'agbplay'` folder, but some setup is needed for that:
@@ -43,6 +43,6 @@ To make the agbplay.exe export faster, it is recommended to use the python scrip
 
 After that, you're ready for the new agbplay process:
 - Inside the `'agbplay/'` folder, run the script `'set_agbplay_maxloop_0.py'`. This will set "max-loops-export" to 0  
-- Run `agbplay.exe` to export all the .wav that you want to loop  
+- Run `agbplay.exe` and export all the .wav that you want to loop  
 - Run the script `'set_agbplay_maxloop_1_and_rename_0.py'`. This will set "max-loops-export" to 1 and rename all the wav produced earlier by adding `'_0'` at the end of the filename  
-- Run `agbplay.exe` again to export the same wav files as before. Now, you have all the wave needed to run `'agbplay_loop.py'`
+- Run `agbplay.exe` again to export the same wav files as before. That's all, you're now ready to run `'agbplay_loop.py'`
