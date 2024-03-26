@@ -1,0 +1,12 @@
+__pycache__
+*.pcm
+tools/msupcm.exe
+tools/tracks_template.json
+tools/VGAudioCli.exe
+tools/wav_to_pcm.xml
+agbplay/cmd_cygwin.txtGBA_roms.Ink
+agbplay/agbplay.exe
+agbplay/cmd_cygwin.txt
+agbplay/agbplay.json - Shortcut.Ink
+agbplay/agb_Cygwin64.Ink
+generate_pcm_from_wav_GBA.py

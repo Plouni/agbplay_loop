@@ -1,0 +1,9 @@
+{
+    "agbplay_config_path":"ENTER_PATH_TO_AGBPLAY_CONFIG_HERE",
+
+    "input_folder":"input/",        
+    "output_path":"output/",
+    "output_start_loop_file":"tracks_data.json",
+    "trim_end_s":10,
+    "delete_valid_wav_after_pcm_generated":true
+}
