@@ -90,7 +90,7 @@ create_folder(output_path)
 
 
 def main():
-    print("# This script will transform the .wav file into a prepared .wav trimmed to end loop #\n")
+    print("# This script will compute the loop points for the .wav inside the 'input' folder #\n")
 
     # Clean Input wav filename
     for file in os.listdir(input_folder):
@@ -143,7 +143,7 @@ def main():
         with open(output_path + '/' + output_start_loop_file, "w+") as f:
             json.dump(tracks, f, indent=4)
 
-        input("Process complete! .pcm available in folder '{}'. Press enter to finish.\n".format(output_path))
+        input("Process complete! Loop points and trimmed .wav available in folder '{}'. Press enter to finish.\n".format(output_path))
 
 
 if __name__ == "__main__":

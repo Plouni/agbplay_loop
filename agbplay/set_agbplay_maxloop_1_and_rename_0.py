@@ -7,9 +7,6 @@ with open('../config.json') as f:
     
 agbplay_config_path = config['agbplay_config_path']
 
-# Loading default normalisation level
-default_normalization_level = config['default_normalization_level']
-
 # Loading input folder
 input_folder = config['input_folder']
 
