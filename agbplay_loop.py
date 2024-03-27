@@ -56,6 +56,9 @@ def trim_wav(file1, output):
     (nchannels, sampwidth, framerate, nframes, comptype, compname) = ifile.getparams()
     ifile.close()
     
+    if nframes/framerate < trim_end_s:
+        return -1, -1
+    
     start_loop = nframes - (nframes_1 - nframes)
     framerate_trim = framerate*trim_end_s
     
@@ -130,16 +133,20 @@ def main():
             wav_modif = "modified_" + wav_clean
             wav_0_modif = "modified_" + wav_clean.split('.wav')[0] + "_0.wav"
             
-            # Convert wav 16 using sox and remove input file          
-            float_to_int16_wav(input_folder+wav, input_folder + wav_modif)
-            float_to_int16_wav(input_folder+wav_0, input_folder + wav_0_modif)
+            try:
+                # Convert wav 16 using sox and remove input file          
+                float_to_int16_wav(input_folder+wav, input_folder + wav_modif)
+                float_to_int16_wav(input_folder+wav_0, input_folder + wav_0_modif)
+            except:
+                print("Not a wav freshly exported by agbplay.exe! Skipping: {}".format(wav))
+                continue
             
             # Compute start/end loop and trim wav
             start_loop, end_loop = trim_wav(wav_modif, output_path + wav_clean)
             
             # start_loop is negative if sound is short (like a sound). In that case we skip it and rename it
             if start_loop < 0:
-                print("skipped sound: {}".format(wav))
+                print("Sound found! Skipping: {}".format(wav))
                 os.remove(input_folder+wav_0_modif)
                 os.rename(input_folder + wav_modif, input_folder+wav_modif.replace("modified_", "sound_"))
                 continue
