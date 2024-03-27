@@ -98,6 +98,7 @@ def main():
             continue
             
         file_new = file.split(' - ')[1]
+        file_new = file_new.replace('', '').replace(' ', '_').replace('&', '')
         os.rename(input_folder + file, input_folder + file_new)
 
     # List of .wav inside input folder
@@ -120,6 +121,11 @@ def main():
             wav_no_ext = wav.split('.wav')[0]
             wav_0 = wav_no_ext + "_0.wav"
             
+            # Skipping if 0 loop not found
+            if wav_0 not in os.listdir(input_folder):
+                print("0 loop version not found! Skipping: {}".format(wav))
+                continue
+            
             # name of modified file, cleaned by sox
             wav_modif = "modified_" + wav_clean
             wav_0_modif = "modified_" + wav_clean.split('.wav')[0] + "_0.wav"
@@ -130,6 +136,14 @@ def main():
             
             # Compute start/end loop and trim wav
             start_loop, end_loop = trim_wav(wav_modif, output_path + wav_clean)
+            
+            # start_loop is negative if sound is short (like a sound). In that case we skip it and rename it
+            if start_loop < 0:
+                print("skipped sound: {}".format(wav))
+                os.remove(input_folder+wav_0_modif)
+                os.rename(input_folder + wav_modif, input_folder+wav_modif.replace("modified_", "sound_"))
+                continue
+            
             
             # Store data in tracks dict
             tracks[wav_no_ext] = {"start_loop": start_loop, "end_loop": end_loop}
