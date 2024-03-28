@@ -75,7 +75,13 @@ def trim_wav(file1, output):
     ofile.writeframes( frames_limit )
     ofile.close()
     
-    return start_loop - framerate_trim, nframes - framerate_trim    
+    start_loop = start_loop - framerate_trim
+    end_loop = nframes - framerate_trim
+    
+    if start_loop == end_loop:
+        return -1, -1
+    
+    return start_loop, end_loop  
 
 
 def create_folder(path):
