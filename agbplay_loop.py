@@ -166,11 +166,14 @@ def main():
                 os.remove(input_folder+wav_modif)
                 os.remove(input_folder+wav_0_modif)
         
-        # Loading config variables
-        with open(output_path + '/' + output_start_loop_file, "w+") as f:
-            json.dump(tracks, f, indent=4)
+        if len(tracks)==0:
+            input("Process complete. No .wav exported...")
+        else:
+            # Loading config variables
+            with open(output_path + folder_end + '/' + output_start_loop_file, "w+") as f:
+                json.dump(tracks, f, indent=4)
 
-        input("Process complete! Loop points and trimmed .wav available in folder '{}'. Press enter to finish.\n".format(output_path))
+            input("Process complete! Loop points and trimmed .wav available in folder '{}'. Press enter to finish.\n".format(output_path))
 
 
 if __name__ == "__main__":
